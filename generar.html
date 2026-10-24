@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Enlaces personalizados</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/light/style.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main class="tool">
+    <div class="container tool__wrap">
+      <div>
+        <h1 class="section__title">Enlaces <em class="script foil">personalizados</em></h1>
+        <p class="section__lead">
+          Escribe el nombre de cada invitado y cuántos lugares tiene. Se genera un enlace que abre la
+          invitación con su nombre en el sobre y el número de lugares ya puesto en la confirmación.
+        </p>
+      </div>
+
+      <form class="form" id="gen-form" novalidate>
+        <div class="field">
+          <label for="g-nombre">Nombre en la invitación</label>
+          <input class="input" id="g-nombre" name="nombre" type="text" placeholder="Ej. Familia Ríos Canché" aria-describedby="g-e-nombre">
+          <p class="field__error" id="g-e-nombre" hidden>Escribe el nombre del invitado.</p>
+        </div>
+        <div class="tool__row">
+          <div class="field">
+            <label for="g-pases">Lugares reservados</label>
+            <input class="input" id="g-pases" name="pases" type="number" min="1" max="20" value="2" inputmode="numeric">
+          </div>
+          <div class="field">
+            <label for="g-tel">WhatsApp del invitado (opcional)</label>
+            <input class="input" id="g-tel" name="telefono" type="tel" placeholder="10 dígitos" inputmode="tel" aria-describedby="g-h-tel">
+            <p class="field__help" id="g-h-tel">Si lo dejas vacío, WhatsApp te deja elegir el contacto.</p>
+          </div>
+        </div>
+        <button class="btn btn--primary btn--block" type="submit">
+          <i class="ph-light ph-link" aria-hidden="true"></i>Generar enlace
+        </button>
+      </form>
+
+      <div class="form tool__result" id="gen-result" hidden>
+        <div class="field">
+          <label for="g-link">Enlace</label>
+          <input class="input" id="g-link" type="text" readonly>
+        </div>
+        <div class="field">
+          <label for="g-msg">Mensaje sugerido</label>
+          <textarea class="input" id="g-msg" rows="4"></textarea>
+        </div>
+        <div class="tool__actions">
+          <a class="btn btn--primary btn--sm" id="g-wa" target="_blank" rel="noopener">
+            <i class="ph-light ph-whatsapp-logo" aria-hidden="true"></i>Enviar por WhatsApp
+          </a>
+          <button class="btn btn--outline btn--sm" id="g-copy" type="button">
+            <i class="ph-light ph-copy" aria-hidden="true"></i>Copiar enlace
+          </button>
+          <a class="btn btn--ghost btn--sm" id="g-open" target="_blank" rel="noopener">
+            Ver invitación<i class="ph-light ph-arrow-up-right" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/generar.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Vista previa para WhatsApp</title>
+  <!-- Herramienta para los novios: genera la imagen que aparece al compartir
+       el enlace (assets/og-imagen.jpg). No se enlaza desde la invitación. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500..600&family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@1,400&family=Pinyon+Script&display=swap">
+  <style>
+    html, body { margin: 0; background: #E3D6BA; color: #2F2B1E; font: 16px/1.5 system-ui, sans-serif; }
+    canvas { display: block; width: 1200px; max-width: 100%; height: auto; aspect-ratio: 1200 / 630; }
+    .panel { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; padding: 20px; }
+    button { padding: 12px 22px; border: 0; border-radius: 999px; background: #5B6033; color: #F5EEDF; font: 600 14px/1 system-ui, sans-serif; cursor: pointer; }
+    code { background: #F5EEDF; padding: 2px 6px; border-radius: 4px; }
+    #exportado { display: none; }
+  </style>
+</head>
+<body>
+  <canvas id="og" width="1200" height="630" role="img" aria-label="Vista previa del enlace de la invitación"></canvas>
+  <div class="panel">
+    <button type="button" id="descargar">Descargar imagen</button>
+    <p>Guárdala como <code>assets/og-imagen.jpg</code>. Es la imagen que aparece al compartir el enlace por WhatsApp.</p>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/ornamentos.js"></script>
+  <script src="js/pase.js"></script>
+  <script>
+    (async () => {
+      const canvas = document.getElementById("og");
+      await Pase.drawOG(canvas.getContext("2d"));
+      const jpg = () => canvas.toDataURL("image/jpeg", 0.9);
+
+      document.getElementById("descargar").addEventListener("click", () => {
+        const a = Object.assign(document.createElement("a"), { href: jpg(), download: "og-imagen.jpg" });
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      });
+
+      // Con ?exportar la imagen queda escrita en la página para guardarla desde la terminal (ver README).
+      if (new URLSearchParams(location.search).has("exportar")) {
+        const out = Object.assign(document.createElement("pre"), { id: "exportado", textContent: jpg() });
+        document.body.appendChild(out);
+      }
+    })();
+  </script>
+</body>
+</html>

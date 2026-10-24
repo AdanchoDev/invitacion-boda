@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Adan & Erika · 13.03.2027</title>
+  <meta name="description" content="Nos casamos y queremos celebrarlo contigo. Consulta los detalles y confirma tu asistencia.">
+  <!-- La invitación es privada: que no aparezca en buscadores. -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#ECE2CC">
+
+  <!-- Vista previa al compartir el enlace (WhatsApp, Facebook, iMessage).
+       Estas apps no ejecutan JavaScript, por eso estos datos van escritos aquí.
+       La imagen se hace con vista-previa.html. Al publicar, pon la dirección completa,
+       por ejemplo https://adanyerika.com/assets/og-imagen.jpg -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Adan & Erika · 13.03.2027">
+  <meta property="og:description" content="Nuestra boda. Abre tu invitación y tu pase.">
+  <meta property="og:image" content="assets/og-imagen.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Pase de la boda de Adan y Erika, 13 de marzo de 2027">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <script>document.documentElement.classList.add("js");</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500..600&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@400;500&family=Pinyon+Script&display=swap">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/light/style.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="is-locked">
+
+  <!-- ===================== 1. Sobre de bienvenida ===================== -->
+  <div class="intro" id="intro">
+    <span class="sprig sprig--tl" data-sprig aria-hidden="true"></span>
+    <span class="sprig sprig--br" data-sprig aria-hidden="true"></span>
+
+    <div class="envelope" id="envelope">
+      <div class="envelope__back"></div>
+      <div class="envelope__letter" aria-hidden="true">
+        <span class="envelope__script script foil emboss">Nuestra boda</span>
+        <span class="wreath envelope__wreath" data-wreath><span class="wreath__mono foil" data-mono></span></span>
+        <span class="envelope__date foil emboss" data-text="fechaPase"></span>
+      </div>
+      <div class="envelope__pocket" aria-hidden="true">
+        <span class="pocket pocket--l"></span>
+        <span class="pocket pocket--r"></span>
+        <span class="pocket pocket--b"></span>
+      </div>
+      <!-- El nombre del invitado va escrito sobre el sobre, como a mano. -->
+      <p class="envelope__address" aria-hidden="true">
+        <span class="envelope__to">Para</span>
+        <span class="envelope__guest" data-guest>ti</span>
+      </p>
+      <div class="envelope__flap" aria-hidden="true">
+        <span class="flap flap--out"><span></span></span>
+        <span class="flap flap--in"><span class="leaves"></span></span>
+      </div>
+      <button class="seal" id="seal" type="button" aria-label="Abrir la invitación">
+        <span class="seal__mono" data-mono></span>
+      </button>
+    </div>
+
+    <p class="intro__hint">Toca el sello para abrir</p>
+  </div>
+
+  <main id="contenido" tabindex="-1">
+
+    <!-- ===================== 2. Portada ===================== -->
+    <section class="hero" id="inicio">
+      <span class="sprig sprig--tr" data-sprig aria-hidden="true"></span>
+      <span class="sprig sprig--bl" data-sprig aria-hidden="true"></span>
+
+      <div class="container hero__inner">
+        <div class="hero__media arch-frame" id="hero-photo" data-hero style="--d:0"></div>
+        <div class="hero__copy">
+          <p class="hero__script script foil" data-hero style="--d:1">¡Nos casamos!</p>
+          <h1 class="hero__names" data-hero style="--d:2">
+            <span data-text="nombre1"></span>
+            <span class="hero__amp foil">&amp;</span>
+            <span data-text="nombre2"></span>
+          </h1>
+          <p class="hero__date" data-hero style="--d:3">
+            <span class="hero__day" data-text="fechaLarga"></span>
+            <span data-text="ciudad"></span>
+          </p>
+          <a class="btn btn--primary" href="#confirmar" data-hero style="--d:4">Confirmar asistencia</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         Parte 1: Nosotros (familias, historia y galería)
+         ========================================================= -->
+
+    <!-- ===================== 3. Mensaje y familias ===================== -->
+    <section class="section mensaje" data-section="mensaje">
+      <div class="container mensaje__inner">
+        <span class="wreath ornament" data-wreath data-reveal aria-hidden="true"></span>
+        <p class="mensaje__frase" data-reveal data-text="mensaje.frase"></p>
+        <p class="mensaje__bendicion" data-reveal data-text="mensaje.bendicion" data-optional></p>
+        <div class="parents" data-render="padres"></div>
+        <div class="godparents" data-reveal data-hide-empty>
+          <h2 class="godparents__title">Nuestros padrinos</h2>
+          <ul class="godparents__list" data-render="padrinos"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 4. Nuestra historia ===================== -->
+    <section class="section historia" data-section="historia">
+      <div class="container">
+        <h2 class="section__title" data-reveal>Nuestra <em class="script foil">historia</em></h2>
+        <ol class="timeline" data-render="historia"></ol>
+      </div>
+    </section>
+
+    <!-- ===================== 5. Galería ===================== -->
+    <section class="section galeria" data-section="galeria">
+      <div class="container">
+        <div class="center-head">
+          <h2 class="section__title" data-reveal>Momentos</h2>
+        </div>
+        <div class="gallery" data-render="galeria"></div>
+        <p class="hashtag" data-reveal>
+          <i class="ph-light ph-camera" aria-hidden="true"></i>
+          Comparte tus fotos de la boda con <strong data-text="novios.hashtag"></strong>
+        </p>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         Parte 2: El día (cuenta regresiva, programa y ubicación)
+         ========================================================= -->
+
+    <!-- ===================== 6. Cuenta regresiva ===================== -->
+    <section class="band countdown" data-section="cuenta" aria-labelledby="cuenta-titulo">
+      <div class="vine" aria-hidden="true"></div>
+      <div class="container countdown__inner">
+        <h2 class="countdown__title script foil-light" id="cuenta-titulo" data-reveal>Guarda la fecha</h2>
+        <p class="countdown__date" data-reveal data-text="fechaLarga"></p>
+        <!-- Más de 30 días: meses, días, horas, minutos. 30 días o menos: días, horas, minutos, segundos. -->
+        <div class="countdown__grid" data-countdown data-reveal>
+          <div class="unit"><span class="unit__num" data-num>0</span><span class="unit__label" data-label></span></div>
+          <div class="unit"><span class="unit__num" data-num>00</span><span class="unit__label" data-label></span></div>
+          <div class="unit"><span class="unit__num" data-num>00</span><span class="unit__label" data-label></span></div>
+          <div class="unit"><span class="unit__num" data-num>00</span><span class="unit__label" data-label></span></div>
+        </div>
+        <p class="countdown__done" data-countdown-done hidden></p>
+        <div class="countdown__actions" data-reveal>
+          <a class="btn btn--on-band" data-cal="google" href="#" target="_blank" rel="noopener">
+            <i class="ph-light ph-calendar-plus" aria-hidden="true"></i>Google Calendar
+          </a>
+          <button class="btn btn--on-band-outline" data-cal="ics" type="button">
+            <i class="ph-light ph-download-simple" aria-hidden="true"></i>Apple / Outlook
+          </button>
+        </div>
+      </div>
+      <div class="vine" aria-hidden="true"></div>
+    </section>
+
+    <!-- ===================== 7. Programa del día ===================== -->
+    <section class="section programa" id="programa" data-section="programa">
+      <div class="container">
+        <div class="center-head">
+          <h2 class="section__title" data-reveal>El gran día</h2>
+          <p class="section__lead" data-reveal data-text="fechaDia"></p>
+        </div>
+        <ol class="program" data-render="programa"></ol>
+      </div>
+    </section>
+
+    <!-- ===================== 8. Ubicaciones ===================== -->
+    <section class="section lugares" id="lugares" data-section="lugares">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Ubicación</p>
+        <h2 class="section__title" data-reveal>Dónde celebraremos</h2>
+        <div class="venues" data-render="lugares"></div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         Parte 3: Tú (pase, confirmación y preguntas)
+         ========================================================= -->
+
+    <!-- ===================== 9. Confirmación (RSVP) ===================== -->
+    <section class="section rsvp" id="confirmar" data-section="confirmar">
+      <div class="container rsvp__grid">
+        <div class="rsvp__intro">
+          <p class="eyebrow" data-reveal>RSVP</p>
+          <h2 class="section__title" data-reveal>Confirma tu asistencia</h2>
+          <p class="section__lead" data-reveal>
+            Te agradeceremos confirmar antes del <strong data-text="rsvp.fechaLimite"></strong>.
+          </p>
+
+          <!-- Pase digital: igual que el impreso. Solo aparece con ?pases=N en el enlace. -->
+          <div class="pass" id="mi-pase" data-pass hidden>
+            <button class="pass__card" type="button" aria-pressed="false">
+              <span class="pass__face pass__face--front">
+                <span class="sprig sprig--pass-a" data-sprig aria-hidden="true"></span>
+                <span class="pass__script script foil emboss">Nuestra boda</span>
+                <span class="wreath pass__wreath" data-wreath><span class="wreath__mono foil" data-mono></span></span>
+                <span class="pass__date foil emboss" data-text="fechaPase"></span>
+              </span>
+              <span class="pass__face pass__face--back">
+                <span class="sprig sprig--pass-b" data-sprig aria-hidden="true"></span>
+                <span class="pass__valid foil emboss">Válido para<br><span data-pass-count></span></span>
+                <span class="wreath pass__wreath pass__wreath--sm" data-wreath></span>
+                <span class="pass__guest" data-pass-guest></span>
+                <span class="pass__stamp" data-pass-stamp hidden>Confirmado</span>
+              </span>
+            </button>
+            <div class="pass__actions">
+              <p class="pass__hint"><i class="ph-light ph-hand-tap" aria-hidden="true"></i>Toca el pase para voltearlo</p>
+              <button class="btn btn--outline btn--sm" type="button" data-save-pass>
+                <i class="ph-light ph-download-simple" aria-hidden="true"></i>Guardar mi pase
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="rsvp__panel" data-reveal>
+          <form class="form" id="rsvp-form" novalidate>
+            <div class="field">
+              <label for="f-nombre">Nombre completo</label>
+              <input class="input" id="f-nombre" name="nombre" type="text" autocomplete="name" aria-describedby="e-nombre">
+              <p class="field__error" id="e-nombre" hidden>Escribe tu nombre para saber quién confirma.</p>
+            </div>
+
+            <fieldset class="field">
+              <legend>¿Nos acompañas?</legend>
+              <div class="choices">
+                <label class="choice">
+                  <input type="radio" name="asistencia" value="si" aria-describedby="e-asistencia">
+                  <span><i class="ph-light ph-confetti" aria-hidden="true"></i>Sí, ahí estaré</span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="asistencia" value="no" aria-describedby="e-asistencia">
+                  <span><i class="ph-light ph-heart-break" aria-hidden="true"></i>No podré ir</span>
+                </label>
+              </div>
+              <p class="field__error" id="e-asistencia" hidden>Elige una de las dos opciones.</p>
+            </fieldset>
+
+            <div class="field" data-if-attending="multi" hidden>
+              <label for="f-asistentes">Número de asistentes</label>
+              <div class="select">
+                <select class="input" id="f-asistentes" name="asistentes" aria-describedby="h-asistentes"></select>
+                <i class="ph-light ph-caret-down" aria-hidden="true"></i>
+              </div>
+              <p class="field__help" id="h-asistentes">Incluyéndote a ti.</p>
+            </div>
+
+            <div class="field" data-if-attending hidden>
+              <label for="f-dieta">Alergias o restricciones alimentarias</label>
+              <input class="input" id="f-dieta" name="dieta" type="text" placeholder="Ej. vegetariano, sin gluten">
+            </div>
+
+            <div class="field" data-if-attending hidden>
+              <label for="f-cancion">Una canción que no puede faltar</label>
+              <input class="input" id="f-cancion" name="cancion" type="text" placeholder="Artista y canción">
+            </div>
+
+            <div class="field">
+              <label for="f-mensaje">Mensaje para los novios</label>
+              <textarea class="input" id="f-mensaje" name="mensaje" rows="3"></textarea>
+            </div>
+
+            <button class="btn btn--primary btn--block" type="submit" data-submit>
+              <i class="ph-light ph-paper-plane-tilt" aria-hidden="true"></i><span>Enviar confirmación</span>
+            </button>
+            <p class="form__note" data-form-note>Se abrirá WhatsApp con tu respuesta lista para enviar.</p>
+            <p class="form__status" data-form-status role="alert" hidden></p>
+          </form>
+
+          <div class="rsvp__done" id="rsvp-done" tabindex="-1" hidden>
+            <i class="ph-light ph-heart rsvp__done-icon" aria-hidden="true"></i>
+            <h3 class="rsvp__done-title" data-done-title></h3>
+            <p data-done-text></p>
+            <div class="rsvp__done-actions">
+              <a class="btn btn--primary btn--sm" data-done-link target="_blank" rel="noopener" hidden>
+                <i class="ph-light ph-whatsapp-logo" aria-hidden="true"></i>Abrir WhatsApp
+              </a>
+              <button class="btn btn--outline btn--sm" type="button" data-done-edit>Cambiar respuesta</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 10. Preguntas frecuentes ===================== -->
+    <section class="section faq" data-section="preguntas">
+      <div class="container faq__inner">
+        <div class="center-head">
+          <h2 class="section__title" data-reveal>Preguntas frecuentes</h2>
+        </div>
+        <div class="faq__list" data-render="preguntas"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== 11. Pie ===================== -->
+  <footer class="footer">
+    <span class="wreath footer__wreath" data-wreath><span class="wreath__mono foil" data-mono></span></span>
+    <p class="footer__thanks">Gracias por ser parte de nuestra historia</p>
+    <p class="footer__meta"><span data-text="nombres"></span> · <span data-text="fechaPase"></span></p>
+  </footer>
+
+  <!-- Accesos rápidos: aparecen al bajar de la portada (útil el día de la boda). -->
+  <nav class="quicknav" id="quicknav" aria-label="Accesos rápidos">
+    <a class="quicknav__link" href="#lugares">
+      <i class="ph-light ph-map-pin" aria-hidden="true"></i><span>Ubicación</span>
+    </a>
+    <a class="quicknav__link" href="#confirmar" data-quick-rsvp>
+      <i class="ph-light ph-envelope-simple" aria-hidden="true"></i><span>Confirmar</span>
+    </a>
+  </nav>
+
+  <button class="music" id="music" type="button" aria-pressed="false" aria-label="Reproducir música" hidden>
+    <i class="ph-light ph-speaker-simple-slash" aria-hidden="true"></i>
+  </button>
+  <audio id="audio" loop preload="none"></audio>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/ornamentos.js"></script>
+  <script src="js/pase.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
