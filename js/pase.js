@@ -13,12 +13,13 @@
   const WREATH = O.wreath();
   const SPRIG = O.sprig();
 
-  const PAPER = "#EFE5CF";
-  const OLIVE = "#5B6033";
-  const INK_SOFT = "#5E5741";
+  const PAPER = "#FDFCF8";
+  const OLIVE = "#66734F";
+  const SAGE = "#A3AC8F";
+  const INK_SOFT = "#5B6255";
   const FOIL = [
-    [0, "#74561A"], [0.2, "#A68134"], [0.36, "#D6B970"],
-    [0.52, "#9C772B"], [0.7, "#C5A257"], [1, "#7A5B1C"],
+    [0, "#664B15"], [0.22, "#876525"], [0.38, "#AA8640"],
+    [0.54, "#7C5D22"], [0.72, "#9A7833"], [1, "#6A4E17"],
   ];
 
   const FONT_SPECS = [
@@ -53,8 +54,11 @@
     return `${parts.day}/${parts.month.charAt(0).toUpperCase()}${parts.month.slice(1)}/${parts.year}`;
   }
 
-  /* Texto dorado con un relieve sutil, como el dorado estampado del papel. */
-  function foilText(ctx, text, x, y, size, family, { weight = 400, style = "normal", maxWidth } = {}) {
+  /* Texto dorado con un relieve sutil, como el dorado estampado del papel.
+     El contorno del mismo dorado engrosa los trazos delgados (sobre todo en Bodoni)
+     para que no se pierdan. */
+  function foilText(ctx, text, x, y, size, family, { weight = 400, style = "normal", maxWidth, grosor } = {}) {
+    const trazo = grosor ?? (family.includes("Bodoni") ? 0.02 : family.includes("Cinzel") ? 0.016 : 0.012);
     ctx.save();
     let px = size;
     ctx.font = `${style} ${weight} ${px}px ${family}`;
@@ -77,6 +81,11 @@
     ctx.shadowBlur = lift;
     ctx.fillStyle = g;
     ctx.fillText(text, x, y);
+    ctx.shadowColor = "transparent";
+    ctx.lineJoin = "round";
+    ctx.lineWidth = Math.max(0.8, px * trazo);
+    ctx.strokeStyle = g;
+    ctx.strokeText(text, x, y);
     ctx.restore();
   }
 
@@ -103,7 +112,7 @@
     ctx.fillRect(x, y, w, h);
     const g = ctx.createRadialGradient(x + w / 2, y + h * 0.42, Math.min(w, h) * 0.15, x + w / 2, y + h / 2, Math.max(w, h) * 0.75);
     g.addColorStop(0, "rgba(255, 255, 255, 0.22)");
-    g.addColorStop(1, "rgba(120, 90, 40, 0.10)");
+    g.addColorStop(1, "rgba(70, 82, 58, 0.08)");
     ctx.fillStyle = g;
     ctx.fillRect(x, y, w, h);
   }
@@ -140,7 +149,7 @@
     const [i1, i2] = iniciales();
 
     ctx.save();
-    ctx.shadowColor = "rgba(70, 52, 18, 0.32)";
+    ctx.shadowColor = "rgba(42, 50, 36, 0.28)";
     ctx.shadowBlur = w * 0.08;
     ctx.shadowOffsetY = w * 0.035;
     ctx.fillStyle = PAPER;
@@ -155,7 +164,7 @@
 
     const cx = x + w / 2;
     if (side === "front") {
-      O.draw(ctx, SPRIG, { x: x - w * 0.18, y: y + h * 0.42, size: w * 0.7, color: OLIVE, alpha: 0.14 });
+      O.draw(ctx, SPRIG, { x: x - w * 0.18, y: y + h * 0.42, size: w * 0.7, color: SAGE, alpha: 0.38 });
       foilText(ctx, "Nuestra boda", cx, y + h * 0.215, w * 0.118, '"Pinyon Script"');
       const ws = w * 0.56;
       const wy = y + h * 0.27;
@@ -164,7 +173,7 @@
       foilText(ctx, `${i1}&${i2}`, cx, wy + ws / 2 + ms * 0.34, ms, '"Bodoni Moda"', { weight: 500 });
       foilText(ctx, fechaPase(), cx, y + h * 0.885, w * 0.078, '"Bodoni Moda"', { weight: 600 });
     } else {
-      O.draw(ctx, SPRIG, { x: x + w * 0.48, y: y - h * 0.14, size: w * 0.7, color: OLIVE, alpha: 0.14, rotate: 180 });
+      O.draw(ctx, SPRIG, { x: x + w * 0.48, y: y - h * 0.14, size: w * 0.7, color: SAGE, alpha: 0.38, rotate: 180 });
       const cs = w * 0.092;
       foilText(ctx, "VÁLIDO PARA", cx, y + h * 0.27, cs, '"Cinzel"', { weight: 500, maxWidth: w * 0.84 });
       foilText(ctx, `${count} ${count === 1 ? "PERSONA" : "PERSONAS"}`, cx, y + h * 0.37, cs, '"Cinzel"', {
@@ -192,7 +201,7 @@
     canvas.width = W;
     canvas.height = H;
     const ctx = canvas.getContext("2d");
-    paper(ctx, 0, 0, W, H, "#E7DFCF");
+    paper(ctx, 0, 0, W, H, "#F0F2EA");
     const cw = 600, ch = 660, gap = 80;
     const top = (H - ch) / 2;
     const left = (W - (cw * 2 + gap)) / 2;
@@ -207,9 +216,9 @@
     await fontsReady();
     const W = ctx.canvas.width, H = ctx.canvas.height;
     const [i1, i2] = iniciales();
-    paper(ctx, 0, 0, W, H, "#ECE2CC");
-    O.draw(ctx, SPRIG, { x: -50, y: H - 330, size: 300, color: OLIVE, alpha: 0.13 });
-    O.draw(ctx, SPRIG, { x: W - 250, y: -110, size: 300, color: OLIVE, alpha: 0.13, rotate: 180 });
+    paper(ctx, 0, 0, W, H, "#FAF9F5");
+    O.draw(ctx, SPRIG, { x: -50, y: H - 330, size: 300, color: SAGE, alpha: 0.42 });
+    O.draw(ctx, SPRIG, { x: W - 250, y: -110, size: 300, color: SAGE, alpha: 0.42, rotate: 180 });
     const cx = W / 2;
     foilText(ctx, "Nuestra boda", cx, 150, 92, '"Pinyon Script"');
     const ws = 300, wy = 184;
