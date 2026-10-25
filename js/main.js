@@ -317,7 +317,7 @@
         if (addMonths(from, months) > inicio) months--;
         const rest = inicio.getTime() - addMonths(from, months).getTime();
         parts = [
-          unit(months, "mes", "meses", false),
+          unit(months, "mes", "meses", true),
           unit(Math.floor(rest / DAY), "día", "días", true),
           unit(Math.floor(rest / 36e5) % 24, "hora", "horas", true),
           unit(Math.floor(rest / 6e4) % 60, "minuto", "minutos", true),
@@ -325,7 +325,7 @@
       } else {
         // 30 días o menos: días, horas, minutos y segundos.
         parts = [
-          unit(Math.floor(diff / DAY), "día", "días", false),
+          unit(Math.floor(diff / DAY), "día", "días", true),
           unit(Math.floor(diff / 36e5) % 24, "hora", "horas", true),
           unit(Math.floor(diff / 6e4) % 60, "minuto", "minutos", true),
           unit(Math.floor(diff / 1e3) % 60, "segundo", "segundos", true),

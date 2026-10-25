@@ -28,9 +28,9 @@ window.INVITACION = {
   // Foto principal (el arco de la portada).
   portada: "https://picsum.photos/id/815/900/1200", // EJEMPLO
 
-  // true  = fotos en tono sepia, combinan con el papel kraft.
+  // true  = fotos en un tono verde olivo suave, combinan con la paleta.
   // false = fotos a color.
-  fotosEnTono: true,
+  fotosEnTono: false, // de momento a color para revisar las fotos; poner true para regresar al tono
 
   // Pon en false cualquier sección que no quieras mostrar.
   secciones: {
